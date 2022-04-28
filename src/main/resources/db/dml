@@ -1,0 +1,5 @@
+use onesignup;
+db.createCollection("users");
+db.createCollection("data");
+db.getCollection("users").insertOne({"email": "shivao93@gmail.com", "password": "Pedro123"});
+db.getCollection("data").createIndex({"userId": 1}, {"unique": true});
