@@ -1,6 +1,7 @@
 package io.github.dathin.onesignup.mapper;
 
 import io.github.dathin.onesignup.model.exception.*;
+//import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.mapstruct.Mapper;
 
@@ -29,11 +30,12 @@ public interface SearchFieldsMapper {
                 throw new InvalidDotCountException();
             } else if (dotCount == 1) {
                 var splitField = field.split("\\.");
-                if (splitField.length == 0 || splitField[0].isBlank() || splitField[1].isBlank()) {
+                if (splitField.length < 2 || splitField[0].isBlank() || splitField[1].isBlank()) {
                     throw new InvalidDotPositionException();
                 }
+            } else {
+                set.add(field);
             }
-            set.add(field);
         }
         if (set.size() != fields.length) {
             throw new DuplicateSearchFieldExcpetion();

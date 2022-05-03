@@ -2,7 +2,6 @@ package io.github.dathin.onesignup.controller;
 
 import io.github.dathin.onesignup.model.data.DataExplained;
 import io.github.dathin.onesignup.model.data.PatchDataRequest;
-import io.github.dathin.onesignup.model.data.SearchDataResponse;
 import io.github.dathin.onesignup.service.OneSignupService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
