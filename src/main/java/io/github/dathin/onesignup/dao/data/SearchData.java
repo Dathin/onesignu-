@@ -4,6 +4,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Projections;
+import io.github.dathin.boot.dathinstarterauthorizer.service.AuthenticationService;
 import io.github.dathin.onesignup.dao.Query;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -18,13 +19,16 @@ public class SearchData implements Query<ArrayList<String>, FindIterable<Map<Str
 
     private final MongoCollection<Document> mongoCollection;
 
+    private final AuthenticationService authenticationService;
 
-    public SearchData(@Qualifier("data") MongoCollection<Document> mongoCollection) {
+
+    public SearchData(@Qualifier("data") MongoCollection<Document> mongoCollection, AuthenticationService authenticationService) {
         this.mongoCollection = mongoCollection;
+        this.authenticationService = authenticationService;
     }
 
     public FindIterable<Map<String, Document>> query(ArrayList<String> searchFields) {
-        var filter = Filters.eq("userId", "625e15dd3f99da226dd54ef3");
+        var filter = Filters.eq("userId", authenticationService.getAuthenticatedUserOrThrow().getId());
         var mapClass = (Class<Map<String, Document>>) (Class<?>) Map.class;
         Bson projectionFields = Projections.fields(Projections.include(searchFields), Projections.excludeId());
         return mongoCollection.find(filter, mapClass).projection(projectionFields);

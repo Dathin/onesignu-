@@ -1,5 +1,9 @@
 package io.github.dathin.onesignup.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.dathin.boot.dathinstarterauthorizer.model.user.UserToken;
 import io.github.dathin.onesignup.model.data.DataExplained;
 import io.github.dathin.onesignup.model.data.PatchDataRequest;
 import io.github.dathin.onesignup.service.OneSignupService;
@@ -14,8 +18,11 @@ public class OneSignup {
 
     private final OneSignupService oneSignupService;
 
-    public OneSignup(OneSignupService oneSignupService) {
+    private final ObjectMapper objectMapper;
+
+    public OneSignup(OneSignupService oneSignupService, ObjectMapper objectMapper) {
         this.oneSignupService = oneSignupService;
+        this.objectMapper = objectMapper;
     }
 
     @GetMapping
@@ -26,7 +33,12 @@ public class OneSignup {
 
     @PatchMapping
     public ResponseEntity<Void> patchData(@RequestBody @Valid PatchDataRequest patchDataRequest) {
-//        String userId = "625e15dd3f99da226dd54ef3";
+        try {
+            var a = objectMapper.readValue("{\"iat\":1652059217,\"exp\":1652145617,\"userId\":19}", JsonNode.class);
+            System.out.println(a);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         oneSignupService.patchData(patchDataRequest);
         return ResponseEntity.noContent().build();
     }

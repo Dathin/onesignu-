@@ -33,6 +33,7 @@ public interface SearchFieldsMapper {
                 if (splitField.length < 2 || splitField[0].isBlank() || splitField[1].isBlank()) {
                     throw new InvalidDotPositionException();
                 }
+                set.add(field);
             } else {
                 set.add(field);
             }

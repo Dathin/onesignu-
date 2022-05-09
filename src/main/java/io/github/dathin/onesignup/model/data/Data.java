@@ -17,7 +17,6 @@ public class Data {
 
     @NotBlank
     @Size(max = 500)
-    @Pattern(regexp="^[a-zA-Z0-9]*$")
     private String value;
 
     public String getKey() {
