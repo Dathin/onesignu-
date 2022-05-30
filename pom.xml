@@ -2,62 +2,43 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>io.github.dathin</groupId>
-    <artifactId>onesignup</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>onesignup</name>
-    <description>onesignup</description>
     <parent>
         <groupId>io.github.dathin.boot</groupId>
         <artifactId>dathin-starter-parent</artifactId>
-        <version>0.0.3-SNAPSHOT</version>
+        <version>1</version>
         <relativePath/>
     </parent>
-    <properties>
-        <java.version>11</java.version>
-    </properties>
+    <groupId>io.github.dathin</groupId>
+    <artifactId>onesignup</artifactId>
+    <version>1</version>
+    <name>onesignup</name>
+    <description>onesignup</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>onesignup-service</module>
+<!--        <module>onesignup-ft</module>-->
+        <module>onesignup-model</module>
+        <module>onesignup-client</module>
+    </modules>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>2.7.1</version>
-        </dependency>
-
-        <dependency>
             <groupId>io.github.dathin.boot</groupId>
-            <artifactId>dathin-starter-openapi</artifactId>
+            <artifactId>dathin-starter-test</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>io.github.dathin.boot</groupId>
-            <artifactId>dathin-starter-errorhandling</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.github.dathin.boot</groupId>
-            <artifactId>dathin-starter-model</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.github.dathin.boot</groupId>
-            <artifactId>dathin-starter-authorizer</artifactId>
-        </dependency>
-
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>io.github.dathin</groupId>
+                <artifactId>jhusky</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>io.spring.javaformat</groupId>
+                <artifactId>spring-javaformat-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -65,6 +46,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
