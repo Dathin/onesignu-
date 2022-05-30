@@ -1,5 +1,7 @@
 package io.github.dathin.onesignup.model.data;
 
+import java.util.Objects;
+
 public class DataExplained extends Data {
 
 	private String keyExplained;
@@ -20,6 +22,21 @@ public class DataExplained extends Data {
 
 	public void setTagExplained(String tagExplained) {
 		this.tagExplained = tagExplained;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		DataExplained that = (DataExplained) o;
+		return Objects.equals(keyExplained, that.keyExplained) && Objects.equals(tagExplained, that.tagExplained);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(keyExplained, tagExplained);
 	}
 
 }

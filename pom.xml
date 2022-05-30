@@ -17,7 +17,7 @@
 
     <modules>
         <module>onesignup-service</module>
-<!--        <module>onesignup-ft</module>-->
+        <module>onesignup-ft</module>
         <module>onesignup-model</module>
         <module>onesignup-client</module>
     </modules>

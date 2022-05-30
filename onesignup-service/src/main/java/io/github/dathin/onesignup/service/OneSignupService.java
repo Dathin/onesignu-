@@ -6,7 +6,7 @@ import io.github.dathin.onesignup.mapper.FoundFieldsMapper;
 import io.github.dathin.onesignup.mapper.PatchDataMapper;
 import io.github.dathin.onesignup.mapper.SearchFieldsMapper;
 import io.github.dathin.onesignup.model.data.DataExplained;
-import io.github.dathin.onesignup.model.data.PatchDataRequest;
+import io.github.dathin.onesignup.model.data.PutDataRequest;
 import io.github.dathin.onesignup.model.exception.FieldNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -35,8 +35,8 @@ public class OneSignupService {
 		this.foundFieldsMapper = foundFieldsMapper;
 	}
 
-	public void patchData(PatchDataRequest patchDataRequest) {
-		var data = patchDataMapper.from(patchDataRequest.getData());
+	public void patchData(PutDataRequest putDataRequest) {
+		var data = patchDataMapper.from(putDataRequest.getData());
 		upsertData.query(data);
 	}
 

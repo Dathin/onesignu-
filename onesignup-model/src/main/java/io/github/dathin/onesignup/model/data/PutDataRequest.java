@@ -5,7 +5,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.List;
 
-public class PatchDataRequest {
+public class PutDataRequest {
 
 	@Valid
 	@NotEmpty
